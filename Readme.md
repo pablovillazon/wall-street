@@ -63,6 +63,7 @@ custom_mark10
 custom_mark11
 </details> 
 Fig. 2 Current Situation. API based architecture
+
 Proposed Patterns
 Key issues identified:
 •	Overloading to the API service.
@@ -94,6 +95,7 @@ custom_mark10
 custom_mark12
 </details>
 Fig. 3 Message Dispatcher architecture
+
 Create a Message Dispatcher on a channel that will consume messages from a channel and distribute them to performers.
 An application is using Messaging. The application needs multiple consumers on a single Message Channel to work in a coordinated fashion.
 
@@ -124,6 +126,7 @@ custom_mark10
 custom_mark13
 </details> 
 Fig. 4 Selective Consumer architecture
+
 Make the consumer a Selective Consumer, one that filteres the messages delivered by its channel so that it only receives the ones that match its criteria.
 An application is using Messaging. It consumes Messages from a Message Channel, but it does not necessarily want to consume all of the messages on that channel, just some of them.
 
