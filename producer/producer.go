@@ -43,6 +43,8 @@ func main() {
 
 	dt := time.Now()
 	myRand := rand.New(rand.NewSource(time.Now().UnixNano()))
+	var quoteType = ""
+
 	for {
 		dateTime := dt.Format("15:04:05.000000")
 		open := (myRand.Float32() * 100) + 100
@@ -50,9 +52,14 @@ func main() {
 		low := (myRand.Float32() * 100) + 100
 		close := (myRand.Float32() * 100) + 100
 		volume := myRand.Intn(1000)
+		if volume%2 == 0 {
+			quoteType = "bid"
+		} else {
+			quoteType = "ask"
+		}
 
 		quote := Quote{
-			QuoteType: "bid",
+			QuoteType: quoteType,
 			Symbol:    "GOOG",
 			DateTime:  dateTime,
 			Open:      open,
