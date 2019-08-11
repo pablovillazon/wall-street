@@ -44,7 +44,7 @@ func main() {
 	dt := time.Now()
 	myRand := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for {
-		dateTime := dt.Format("2006-01-02 15:04:05.000000")
+		dateTime := dt.Format("15:04:05.000000")
 		open := (myRand.Float32() * 100) + 100
 		high := (myRand.Float32() * 100) + 100
 		low := (myRand.Float32() * 100) + 100
