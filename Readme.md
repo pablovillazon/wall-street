@@ -3,7 +3,7 @@ Integration Patterns
 FINAL PROJECT
 
 1. Analysis - Patterns Proposed
-2. C4 Mode
+2. C4 Model
 
 
 1. Analysis - Patterns Proposed
