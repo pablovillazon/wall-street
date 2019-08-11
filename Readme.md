@@ -1,5 +1,5 @@
 Integration Patterns
 
 Porject Name
-Wall Street Services
+Wall Street Services.
 
