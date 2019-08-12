@@ -132,3 +132,59 @@ An application is using Messaging. It consumes Messages from a Message Channel, 
 
 The producer will generate different types of messages and will broadcast to the channel, consumers that are subscribed for certain types of messages will receive it, and will ignore others, this way we pretend to increase the data flow and increase the response times, making the consumers can obtain data in a high rates.
 
+2. C4 Model is composed of diagrams that shows how the pattern Data-Sync is implemented.
+
+Pattern solution Diagrams:
+![Alt text](http://jkin.be/content/c4_components.jpg)
+<details> 
+<summary></summary>
+custom_mark13
+  digraph G {
+    size ="4,4";
+    main [shape=box];
+    main -> parse [weight=8];
+    parse -> execute;
+    main -> init [style=dotted];
+    main -> cleanup;
+    execute -> { make_string; printf};
+    init -> make_string;
+    edge [color=red];
+    main -> printf [style=bold,label="100 times"];
+    make_string [label="make a string"];
+    node [shape=box,style=filled,color=".7 .3 1.0"];
+    execute -> compare;
+  }
+custom_mark13
+</details>
+Fig. 5 Pattern solution components
+
+As you can see in figure 5 we used the pattern Data-Sync to resolve the wall street problem. We have a Producer who sends messages that in this case are called quotes to a dispatcher queue who resend quotes to our dispatcher thats sends to the all clients.
+
+Producer diagram
+
+![Alt text](http://jkin.be/content/c4_sender.jpg)
+<details> 
+<summary></summary>
+custom_mark14
+  digraph G {
+    size ="4,4";
+    main [shape=box];
+    main -> parse [weight=8];
+    parse -> execute;
+    main -> init [style=dotted];
+    main -> cleanup;
+    execute -> { make_string; printf};
+    init -> make_string;
+    edge [color=red];
+    main -> printf [style=bold,label="100 times"];
+    make_string [label="make a string"];
+    node [shape=box,style=filled,color=".7 .3 1.0"];
+    execute -> compare;
+  }
+custom_mark14
+</details>
+Fig. 6 Producer queue diagram
+
+The producer sends a quote per minute to RabbitMQ queue.
+
+
