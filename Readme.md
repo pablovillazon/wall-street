@@ -158,11 +158,11 @@ custom_mark13
 </details>
 Fig. 5 Pattern solution components
 
-As you can see in figure 5 we used the pattern Data-Sync to resolve the wall street problem. We have a Producer who sends messages that in this case are called quotes to a dispatcher queue who resend quotes to our dispatcher thats sends to the all clients.
+As you can see in figure 5 we used the pattern Data-Sync to resolve the wall street problem. We have a Producer who sends messages in this case are called quotes to a dispatcher queue who resends quotes to our dispatcher that sends messages to the all clients.
 
 Producer diagram
 
-![Alt text](http://jkin.be/content/c4_sender.jpg)
+![Alt text](http://jkin.be/content/c4_sender1.jpg)
 <details> 
 <summary></summary>
 custom_mark14
@@ -185,6 +185,56 @@ custom_mark14
 </details>
 Fig. 6 Producer queue diagram
 
-The producer sends a quote per minute to RabbitMQ queue.
+The producer sends a quote per second to RabbitMQ queue.
 
+Dispatcher Diagram
 
+![Alt text](http://jkin.be/content/c4_Detail.jpg)
+<details> 
+<summary></summary>
+custom_mark15
+  digraph G {
+    size ="4,4";
+    main [shape=box];
+    main -> parse [weight=8];
+    parse -> execute;
+    main -> init [style=dotted];
+    main -> cleanup;
+    execute -> { make_string; printf};
+    init -> make_string;
+    edge [color=red];
+    main -> printf [style=bold,label="100 times"];
+    make_string [label="make a string"];
+    node [shape=box,style=filled,color=".7 .3 1.0"];
+    execute -> compare;
+  }
+custom_mark15
+</details>
+Fig. 7 Dispatcher queue diagram
+RabbitMQ Dispatcher Queue Server sends messages (quotes) to our dispatcher (dispatcher.go)
+
+Client Diagram
+
+![Alt text](http://jkin.be/content/c4_clientDetail.jpg)
+<details> 
+<summary></summary>
+custom_mark16
+  digraph G {
+    size ="4,4";
+    main [shape=box];
+    main -> parse [weight=8];
+    parse -> execute;
+    main -> init [style=dotted];
+    main -> cleanup;
+    execute -> { make_string; printf};
+    init -> make_string;
+    edge [color=red];
+    main -> printf [style=bold,label="100 times"];
+    make_string [label="make a string"];
+    node [shape=box,style=filled,color=".7 .3 1.0"];
+    execute -> compare;
+  }
+custom_mark16
+</details>
+Fig. 8 Client diagram
+Each client receives messages (queues) from its RabbitMQ Queue and processes it.
